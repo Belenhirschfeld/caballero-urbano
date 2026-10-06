@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caballero Urbano · Barber Shop en Paraná</title>
+  <meta name="description" content="Caballero Urbano Barber Shop. Cortes, barba y cejas en Monte Caseros 345, Paraná, Entre Ríos. Reservá tu turno online.">
+  <meta name="theme-color" content="#0e0d0c">
+  <meta property="og:title" content="Caballero Urbano · Barber Shop">
+  <meta property="og:description" content="Mejorar tu imagen, nuestro trabajo. Reservá tu turno online.">
+  <meta property="og:image" content="logo.png">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <a href="#inicio" class="brand" aria-label="Caballero Urbano, volver al inicio">
+      <img src="logo.png" alt="" width="36" height="40">
+      <span>Caballero Urbano</span>
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#servicios">Precios</a>
+      <a href="#contacto">Horarios</a>
+      <a href="#reservar" class="btn btn-sm">Reservar</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="hero-frame">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+
+        <p class="eyebrow">Barber Shop · Paraná, Entre Ríos</p>
+        <img class="hero-logo" src="logo.png" alt="Caballero Urbano Barber Shop" width="480" height="538">
+        <h1 class="sr-only">Caballero Urbano Barber Shop</h1>
+        <p class="hero-tagline">Mejorar tu imagen, nuestro trabajo.</p>
+        <p class="hero-sub">Reservá tu turno online en menos de un minuto. También atendemos por orden de llegada.</p>
+        <div class="hero-actions">
+          <a href="#reservar" class="btn">Reservar turno</a>
+          <a href="#servicios" class="btn btn-ghost">Ver precios</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="section" id="servicios">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">I · Servicios</p>
+          <h2>Lista de precios</h2>
+          <p class="lead">Precios actualizados. Pagás en el local.</p>
+        </header>
+        <ul class="menu" id="serviceMenu"></ul>
+      </div>
+    </section>
+
+    <!-- RESERVAS -->
+    <section class="section section-alt" id="reservar">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">II · Turnos</p>
+          <h2>Reservá tu turno</h2>
+          <p class="lead">Tres pasos. Sin llamadas, sin esperas.</p>
+        </header>
+
+        <div class="booking" id="booking">
+          <div class="booking-main">
+            <ol class="steps" id="steps">
+              <li data-step="1"><span class="n">01</span><span class="lbl">Servicio</span></li>
+              <li data-step="2"><span class="n">02</span><span class="lbl">Horario</span></li>
+              <li data-step="3"><span class="n">03</span><span class="lbl">Datos</span></li>
+            </ol>
+
+            <div class="panel" data-panel="1">
+              <h3>¿Qué te hacemos hoy?</h3>
+              <div class="options" id="serviceOptions"></div>
+            </div>
+
+            <div class="panel" data-panel="2" hidden>
+              <h3>Elegí día y horario</h3>
+              <div class="days" id="days"></div>
+              <div id="slots"></div>
+              <p class="slots-empty" id="slotsEmpty" hidden>No quedan horarios para este día. Probá con otro.</p>
+            </div>
+
+            <div class="panel" data-panel="3" hidden>
+              <h3>Tus datos</h3>
+              <form class="form" id="contactForm" novalidate>
+                <div class="field">
+                  <label for="fName">Nombre y apellido</label>
+                  <input id="fName" name="name" autocomplete="name" required>
+                  <small class="error" aria-live="polite"></small>
+                </div>
+                <div class="field">
+                  <label for="fPhone">Teléfono / WhatsApp</label>
+                  <input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="343 123 4567" required>
+                  <small class="error" aria-live="polite"></small>
+                </div>
+                <div class="field field-full">
+                  <label for="fNotes">Comentarios <span class="optional">(opcional)</span></label>
+                  <textarea id="fNotes" name="notes" rows="3" placeholder="Ej.: diseño, color, referencia de corte"></textarea>
+                </div>
+              </form>
+            </div>
+
+            <div class="panel panel-done" data-panel="4" hidden id="done"></div>
+
+            <div class="booking-nav" id="bookingNav">
+              <button type="button" class="btn btn-ghost" id="backBtn">Atrás</button>
+              <button type="button" class="btn" id="nextBtn" disabled>Continuar</button>
+            </div>
+          </div>
+
+          <aside class="summary" aria-label="Resumen del turno">
+            <p class="eyebrow">Tu turno</p>
+            <dl>
+              <div><dt>Servicio</dt><dd id="sumService">—</dd></div>
+              <div><dt>Fecha</dt><dd id="sumDate">—</dd></div>
+              <div><dt>Hora</dt><dd id="sumTime">—</dd></div>
+            </dl>
+            <div class="summary-total"><span>Total</span><strong id="sumTotal">—</strong></div>
+            <p class="summary-note">Pagás en el local.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="section" id="contacto">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">III · La casa</p>
+          <h2>Nuestros horarios</h2>
+          <p class="lead"><span class="status" id="openStatus"></span></p>
+        </header>
+        <div class="info reveal">
+          <div class="info-card">
+            <p class="eyebrow">Horarios</p>
+            <h3>Cuándo abrimos</h3>
+            <ul class="hours" id="hours"></ul>
+          </div>
+          <div class="info-card">
+            <p class="eyebrow">Dirección</p>
+            <h3 id="address"></h3>
+            <p class="muted">Paraná, Entre Ríos. Turnos o por orden de llegada.</p>
+            <a class="link-btn" id="mapLink" target="_blank" rel="noopener">Cómo llegar →</a>
+          </div>
+          <div class="info-card">
+            <p class="eyebrow">Contacto</p>
+            <h3>Hablemos</h3>
+            <p class="muted">Consultas por WhatsApp. Mirá nuestros trabajos en Instagram.</p>
+            <ul class="contact-list" id="contactList"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img class="footer-logo" src="logo.png" alt="" width="64" height="72" loading="lazy">
+    <p class="motto">Gracias por confiar en nosotros y dejarnos trabajar tu imagen día a día.</p>
+    <p>© <span id="year"></span> Caballero Urbano Barber Shop · Monte Caseros 345, Paraná</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Node
+node_modules/
+.pnp
+.pnp.js
+
+# Build
+/dist/
+/build/
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Env
+.env
+.env.local
+.env.production.local
+
+# Vercel
+.vercel/
